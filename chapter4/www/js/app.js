@@ -25,6 +25,11 @@ app.config(function($stateProvider, $urlRouterProvider){
   .state('tour', {
     url:'/tour',
     templateUrl:'views/tour/tour.html'
+  })
+  .state('directions', {
+    url:'/directions',
+    controller: 'DirectionsController',
+    templateUrl:'views/directions/directions.html'
   });
   $urlRouterProvider.otherwise('/tour');
 });
