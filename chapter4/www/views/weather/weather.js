@@ -1,6 +1,7 @@
 (function(){
 
-  app.controller('WeatherController', ['$scope', '$http', '$ionicLoading', function($scope, $http, $ionicLoading) {
+  app.controller('WeatherController', ['$scope', '$http', '$ionicLoading',  function($scope, $http, $ionicLoading) {
+
 
     var directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
     $ionicLoading.show();
@@ -30,10 +31,6 @@
       var index = Math.floor((degree + 22)/45);
       return directions[index];
     };
-
-    $scope.toCel = function(kelvin) {
-      return Math.ceil(kelvin - 273.15);
-    }
 
   }]);
 

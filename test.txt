@@ -1,9 +1,13 @@
 
 page 33 when cable wokrs
 
-checkout angular copy
+checkout angular copy, ui router !!!!
 
 chapter4 :
 
 	create a map with location pin
 	create services for weather and reservation
+	add loading screen to restaurnats view
+
+
+
