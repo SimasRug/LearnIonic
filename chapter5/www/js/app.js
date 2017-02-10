@@ -18,7 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       }
     })
     .state('tabs.detail', {
-      url: '/detail/:currency',
+      url: '/detail/:currency', // this is the way to pass values, not /detail?currency
       views: {
         'rates-tab': {
           templateUrl: 'views/detail/detail.html',
@@ -38,7 +38,8 @@ app.config(function($stateProvider, $urlRouterProvider){
       url: '/currencies',
       views: {
         'currencies-tab': {
-          templateUrl: 'views/currencies/currencies.html'
+          templateUrl: 'views/currencies/currencies.html',
+          controller: 'CurrenciesController'
         }
       }
     });
@@ -73,23 +74,23 @@ app.factory('Currencies', function() {
      //{ code: 'CHF', text: 'Swiss Franc', selected: true},
      { code: 'CNY', text: 'Chinese Yuan', selected: true},
      { code: 'EUR', text: 'Euro', selected: true },
-     { code: 'GBP', text: 'British Pound Sterling', selected: true },
-     { code: 'IDR', text: 'Indonesian Rupiah', selected: true},
-     { code: 'ILS', text: 'Israeli New Sheqel', selected: true},
-     { code: 'KRW', text: 'Korean Won', selected: true },
-     { code: 'MXN', text: 'Mexican Peso', selected: true },
+     { code: 'GBP', text: 'British Pound Sterling', selected: false },
+     { code: 'IDR', text: 'Indonesian Rupiah', selected: false},
+     { code: 'ILS', text: 'Israeli New Sheqel', selected: false},
+     { code: 'KRW', text: 'Korean Won', selected: false },
+     { code: 'MXN', text: 'Mexican Peso', selected: false },
     //  { code: 'NOK', text: 'Norwegian Krone', selected: true},
-     { code: 'MYR', text: 'Malaysian Ringgit', selected: true},
-     { code: 'NGN', text: 'Nigerian Naira', selected: true},
-     { code: 'NZD', text: 'New Zealand Dollar', selected: true},
-     { code: 'PLN', text: 'Polish Zloty', selected: true},
+     { code: 'MYR', text: 'Malaysian Ringgit', selected: false},
+     { code: 'NGN', text: 'Nigerian Naira', selected: false},
+     { code: 'NZD', text: 'New Zealand Dollar', selected: false},
+     { code: 'PLN', text: 'Polish Zloty', selected: false},
     //  { code: 'RON', text: 'Romanian Leu', selected: true},
-     { code: 'RUB', text: 'Russian Ruble', selected: true },
-     { code: 'SEK', text: 'Swedish Krona', selected: true},
-     { code: 'SGD', text: 'Singapore Dollar', selected: true},
-     { code: 'TRY', text: 'Turkish Lyra', selected: true },
-     { code: 'USD', text: 'United States Dollar', selected: true },
-     { code: 'ZAR', text: 'South African Rand', selected: true}
+     { code: 'RUB', text: 'Russian Ruble', selected: false },
+     { code: 'SEK', text: 'Swedish Krona', selected: false},
+     { code: 'SGD', text: 'Singapore Dollar', selected: false},
+     { code: 'TRY', text: 'Turkish Lyra', selected: false },
+     { code: 'USD', text: 'United States Dollar', selected: false },
+     { code: 'ZAR', text: 'South African Rand', selected: false}
   ];
 });
 
