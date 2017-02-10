@@ -7,7 +7,9 @@ chapter4 :
 
 	create a map with location pin
 	create services for weather and reservation
-	add loading screen to restaurnats view
+	add loading screen to restaurnats view ?
+
+cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyCOr4_1TZIWIQpmPx1gN7C90eGGYXns8Dw"
 
 
 

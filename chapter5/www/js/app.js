@@ -59,7 +59,9 @@ app.run(function($ionicPlatform) {
 app.config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
+    $ionicConfigProvider.navBar.alignTitle('center');
 }]);
+
 
 app.factory('Currencies', function() {
 
