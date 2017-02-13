@@ -1,6 +1,18 @@
-angular.module('App', ['ionic'])
+(function(window){
 
-.run(function($ionicPlatform) {
+window.app = angular.module('App', ['ionic'])
+
+
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider.state('search', {
+    url: '/search',
+    controller: 'SearchController',
+    templateUrl: 'views/search/search.html'
+  });
+  $urlRouterProvider.otherwise('/search')
+});
+
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -9,4 +21,7 @@ angular.module('App', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
+});
+
+
+})(window);
