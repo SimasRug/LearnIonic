@@ -8,6 +8,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/search',
     controller: 'SearchController',
     templateUrl: 'views/search/search.html'
+  })
+  .state('settings', {
+    url:'/settings',
+    controller:'SettingsController',
+    templateUrl: 'views/settings/settings.html'
   });
   $urlRouterProvider.otherwise('/search')
 });
@@ -33,7 +38,7 @@ app.factory('Settings', function() {
     units: 'us',
     days: 8
   }
-  return Settins;
+  return Settings;
 });
 
 app.factory('Locations', function() {
