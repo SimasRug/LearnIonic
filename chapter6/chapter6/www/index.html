@@ -35,7 +35,7 @@
         </ion-nav-bar>
         <ion-nav-view></ion-nav-view>
       </ion-side-menu-content>
-      <ion-side-menu side="left">
+      <ion-side-menu side="left" ng-controller="LeftMenuController">
         <ion-header-bar class="bar-dark">
           <h1 class="title">My App</h1>
         </ion-header-bar>
@@ -49,6 +49,9 @@
               <span class="icon ion-ios-cog"></span>
               Settings
             </ion-item>
+            <ion-item class="item-divider"></ion-item>
+            <ion-item class="item-icon-left" ui-sref="weather({city:location.city, lat:location.lat, lng:location.lng})" menu-close
+                ng-repeat="location in locations"><span class="icon ion-ios-location"></span>{{location.city}}</ion-item>
           </ion-list>
         </ion-content>
       </ion-side-menu>
