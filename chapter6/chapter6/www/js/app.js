@@ -13,6 +13,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url:'/settings',
     controller:'SettingsController',
     templateUrl: 'views/settings/settings.html'
+  })
+  .state('weather', {
+    url:'/weather/:city/:lat/:lng',
+    controller: 'WeatherController',
+    templateUrl: 'views/weather/weather.html'
   });
   $urlRouterProvider.otherwise('/search')
 });
@@ -44,10 +49,12 @@ app.factory('Settings', function() {
 app.factory('Locations', function() {
   var Locations = {
     data: [{
+      id: 1, // change this later
       city: 'Chicago, IL, USA',
       lat: 41.8781163,
       lng: -87.6297982 },
       {
+        id:2, // change this later
         city: 'Milan, Italy',
         lat: 45.4654219,
         lng: 9.1859243 }], // end of data[]
@@ -58,6 +65,7 @@ app.factory('Locations', function() {
          index = i;
        }
      }); // end of forEach
+     return index;
    }, // end of getIndex
    toggle: function(item){
      var index = Locations.getIndex(item);

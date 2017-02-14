@@ -6,8 +6,8 @@ app.controller('SettingsController',['$scope','Settings', 'Locations', function(
   $scope.canDelete = false;
 
   $scope.remove = function(index) {
-    Locations.toggle(Locations.data[index]);
-  }
+     Locations.toggle(Locations.data[index]);
+  };
 
 
 }]);

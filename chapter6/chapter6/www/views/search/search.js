@@ -1,7 +1,7 @@
 (function(){
   app.controller('SearchController',['$scope', '$http', function($scope, $http) {
 
-  $scope.model = {term: 'milan'};
+  $scope.model = {term: ''};
 
   $scope.search = function(){
     $http.get('https://maps.googleapis.com/maps/api/geocode/json',
