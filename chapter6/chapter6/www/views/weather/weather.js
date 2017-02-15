@@ -1,6 +1,6 @@
 (function(){
 
-app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings', function($scope, $http, $stateParams, Settings){
+app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings', '$ionicActionSheet' , function($scope, $http, $stateParams, Settings, $ionicActionSheet){
 
   $scope.params = $stateParams;
   $scope.settings = Settings;
@@ -10,8 +10,6 @@ app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings
     $scope.forecast = forecast;
     console.log( $scope.forecast.currently);
   });
-
-
 
   var barHeight = document.getElementsByTagName('ion-header-bar')[0].clientHeight;
 
@@ -23,6 +21,16 @@ app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings
   };
   $scope.getHeight = function() {
     return parseInt(window.innerHeight - barHeight) + 'px';
+  };
+
+  $scope.showOptions = function() {
+    var sheet = $ionicActionSheet.show({
+      buttons: [
+        {text: 'Toggle Favorite'},
+        {text: 'Set as Primary'},
+        {text: 'Sunrise and Sunset ca'}
+      ],
+    });
   };
 
 }]);
