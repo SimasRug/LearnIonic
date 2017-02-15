@@ -1,6 +1,6 @@
 (function(){
 
-app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings', '$ionicActionSheet' , function($scope, $http, $stateParams, Settings, $ionicActionSheet){
+app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings', '$ionicActionSheet', 'Locations' , '$ionicModal', function($scope, $http, $stateParams, Settings, $ionicActionSheet, Locations, $ionicModal){
 
   $scope.params = $stateParams;
   $scope.settings = Settings;
@@ -28,10 +28,50 @@ app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings
       buttons: [
         {text: 'Toggle Favorite'},
         {text: 'Set as Primary'},
-        {text: 'Sunrise and Sunset ca'}
+        {text: 'Sunrise Sunset Chart'}
       ],
+      cancelText: 'Cancel',
+      buttonClicked: function(index) {
+        if(index === 0) {
+          Locations.toggle($stateParams);
+        }
+        if (index === 1) {
+          Locations.primary($stateParams);
+        }
+        if (index === 2 ) {
+          $scope.showModal();
+        }
+        return true;
+      }
     });
   };
+
+  $scope.showModal = function() {
+    if ($scope.modal) {
+      $scope.modal.show();
+    } else {
+      $ionicModal.fromTemplateUrl('views/weather/modal-chart.html',{
+        scope: $scope
+      }).then(function(modal) {
+        $scope.modal = modal;
+        var days = [];
+        var day = Date.now();
+        for(var i = 0; i < 365; i++) {
+          day += 1000 * 60 * 60 * 24;
+          days.push(SunCalc.getTimes(day, $scope.params.lat, $scope.params.lng));
+        }
+        $scope.chart = days;
+        $scope.modal.show();
+      });
+    }
+  };
+
+  $scope.hideModal = function () {
+    $scope.modal.hide();
+  };
+  $scope.$on('$destroy', function(){
+    $scope.modal.remove();
+  });
 
 }]);
 
