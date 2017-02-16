@@ -46,7 +46,7 @@ app.factory('Settings', function() {
   return Settings;
 });
 
-app.factory('Locations', function() {
+app.factory('Locations', function($ionicPopup) {
   var Locations = {
     data: [{
       id: 1, // change this later
@@ -70,9 +70,15 @@ app.factory('Locations', function() {
    toggle: function(item){
      var index = Locations.getIndex(item);
      if(index >= 0 ) {
-       Locations.data.splice(index, 1);
+       $ionicPopup.confirm({
+         title: 'Are you sure',
+         template: 'This will remove ' + Locations.data[index].city
+       }).then(function(res){
+         if (res) {Locations.data.splice(index, 1);}
+       });
      } else {
        Locations.data.push(item);
+       $ionicPopup.alert({title:'Location saved'});
      }
    }, // end of toggle
    primary: function(item) {
@@ -87,6 +93,7 @@ app.factory('Locations', function() {
  };// end of Locations object
  return Locations
 });// end of Locations factory
+
 
 
 app.filter('icons', function(){
