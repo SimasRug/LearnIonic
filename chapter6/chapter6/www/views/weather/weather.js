@@ -34,6 +34,8 @@ app.controller('WeatherController',['$scope', '$http', '$stateParams', 'Settings
       buttonClicked: function(index) {
         if(index === 0) {
           Locations.toggle($stateParams);
+          console.log(index);
+          console.log($stateParams);
         }
         if (index === 1) {
           Locations.primary($stateParams);

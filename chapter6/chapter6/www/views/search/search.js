@@ -9,5 +9,6 @@
         $scope.results = response.results;
       });
   }; // end of search()
+  console.log($scope.results);
   }]);
 })();

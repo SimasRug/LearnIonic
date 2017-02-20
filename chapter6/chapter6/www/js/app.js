@@ -47,17 +47,23 @@ app.factory('Settings', function() {
 });
 
 app.factory('Locations', function($ionicPopup) {
+  function store() {
+    localStorage.setItem('locations', angular.toJson(Locations.data));
+  }
+  // console.log(Locations.data);
   var Locations = {
-    data: [{
-      id: 1, // change this later
+     data: [
+       {
+      // id: 1, // change this later
       city: 'Chicago, IL, USA',
       lat: 41.8781163,
       lng: -87.6297982 },
       {
-        id:2, // change this later
+        // id:2, // change this later
         city: 'Milan, Italy',
         lat: 45.4654219,
-        lng: 9.1859243 }], // end of data[]
+        lng: 9.1859243 }
+  ], // end of data[]
    getIndex: function(item) {
      var index = -1;
      angular.forEach(Locations.data, function(location, i) {
@@ -68,6 +74,7 @@ app.factory('Locations', function($ionicPopup) {
      return index;
    }, // end of getIndex
    toggle: function(item){
+     console.log(item);
      var index = Locations.getIndex(item);
      if(index >= 0 ) {
        $ionicPopup.confirm({
@@ -80,6 +87,7 @@ app.factory('Locations', function($ionicPopup) {
        Locations.data.push(item);
        $ionicPopup.alert({title:'Location saved'});
      }
+      store();
    }, // end of toggle
    primary: function(item) {
      var index = Locations.getIndex(item);
@@ -89,8 +97,18 @@ app.factory('Locations', function($ionicPopup) {
      } else {
        Locations.data.unshift(item);
      }
+     store();
    } //end of primary
  };// end of Locations object
+
+ try {
+   var items = angular.fromJson(localStorage.getItem('locations')) || [];
+   Locations.data = items;
+ } catch(e) {
+   Locations.data = [];
+ }
+ console.log(Locations.data);
+   localStorage.clear();
  return Locations
 });// end of Locations factory
 
