@@ -1,0 +1,24 @@
+<ion-view view-title="Login">
+  <ion-content>
+    <h4 class="text-center"> {{message}}</h4>
+    <form name="loginForm" ng-submit="login()" novalidate>
+     <div class="list">
+       <label for="email" class="item item-input item-stacked-label">
+         <span class="input-label">Email Address</span>
+          <input type="email" placeholder="Username or Email Address" name="email" ng-model="userData.email" ng-required="true">
+       </label>
+       <p ng-show="loginForm.email.$invalid && loginForm.email.$touched" class="text-center validationText"> Must be a valid username or email</p>
+
+       <label for="password" class="item item-input item-stacked-label">
+         <span class="input-label">Password</span>
+         <input type="password" name="password" placeholder="Password" class="form-control"
+         ng-model="userData.password" ng-required="true">
+       </label>
+       <p ng-show="loginForm.password.$invalid && loginForm.password.$touched" class="text-center validationText">Enter password</p>
+
+     </div>
+     <button type="submit" class="button button-full button-positive" ng-disabled="loginForm.$invalid">Login</button>
+     <p class="text-center">Dont have an account? <a ng-href="#/register">register</a></p>
+    </form>
+  </ion-content>
+</ion-view>

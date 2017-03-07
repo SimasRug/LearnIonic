@@ -1,0 +1,28 @@
+<ion-view view-title="Register">
+  <ion-content>
+  <h4 class="text-center"> {{message}}</h4>
+
+    <form name="registerForm" ng-submit="register()" novalidate>
+
+     <div class="list">
+       <label for="username" class="item item-input item-stacked-label">
+         <span class="input-label">Username</span>
+          <input type="text" placeholder="Username" name="username" ng-model="userData.username" ng-required="true">
+       </label>
+       <label for="email" class="item item-input item-stacked-label">
+         <span class="input-label">Email Address</span>
+          <input type="email" placeholder="Email Address" name="email" ng-model="userData.email" ng-required="true">
+       </label>
+       <p ng-show="registerForm.email.$invalid && registerForm.email.$touched" class="text-center validationText"> Must be a valid email</p>
+
+       <label for="password" class="item item-input item-stacked-label">
+         <span class="input-label">Password</span>
+         <input type="password" name="password" placeholder="Password" class="form-control"
+         ng-model="userData.password" ng-required="true">
+       </label>
+       <p ng-show="registerForm.password.$invalid && registerForm.password.$touched" class="text-center validationText">Enter password</p>
+
+     </div>
+   <button type="submit" class="button button-full button-positive" ng-disabled="registerForm.$invalid">Register</button>
+   <p class="text-center">Have an acount? <a ng-href="#/login">login</a></p>
+    </form>
