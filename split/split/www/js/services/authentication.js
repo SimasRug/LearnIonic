@@ -6,7 +6,26 @@
      var provider = new firebase.auth.GoogleAuthProvider();
      var myObject;
 
+     auth.$onAuthStateChanged(function(authUser) {
+      if(authUser) {
+        var userRef = ref.child('users').child(authUser.uid);
+        var userObject = $firebaseObject(userRef); // basiclly getting all the info about the user using firebaseObject
+        $rootScope.currentUser = userObject;
+          console.log($rootScope.currentUser);
+      } else {
+        $rootScope.currentUser = '';
+          console.log($rootScope.currentUser);
+      }
+    });
+
      myObject = {
+       requireAuth: function(){
+         return auth.$requireSignIn();
+       },
+       logout: function(){
+         $rootScope.message = '';
+         return auth.$signOut();
+       },
        login: function(user) {
          auth.$signInWithEmailAndPassword(user.email, user.password)
            .then(function(user) {

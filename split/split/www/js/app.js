@@ -1,12 +1,28 @@
 (function(window){
 
 window.app = angular.module('starter', ['ionic', 'firebase']);
+
+app.run(['$rootScope', '$location', function($rootScope, $location){
+  $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
+    if( error = 'AUTH_REQUIRED') {
+      $rootScope.message = 'You must be loged in';
+      $location.path('/login');
+      console.log($rootScope.message);
+    }
+  });
+}]);
+
 app.config(function($stateProvider, $urlRouterProvider){
   $stateProvider
     .state('login', {
       url:'/login',
       controller: 'LoginController',
-      templateUrl:'views/login/login.html'
+      templateUrl:'views/login/login.html',
+      resolve:{
+          removeAuth: function(Authentication) {
+            return Authentication.logout();
+          }
+        }
     })
     .state('register', {
       url:'/register',
@@ -15,7 +31,13 @@ app.config(function($stateProvider, $urlRouterProvider){
     })
     .state('home', {
       url:'/home',
-      templateUrl:'views/home/home.html'
+      controller: 'HomeController',
+      templateUrl:'views/home/home.html',
+      resolve: {
+        currentAuth: function(Authentication){
+          return Authentication.requireAuth();
+        }
+      }
     });
       $urlRouterProvider.otherwise('/home');
 });

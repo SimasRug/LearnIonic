@@ -1,9 +1,9 @@
 (function(){
   app.controller('RegisterController',['$scope', 'Authentication','$rootScope', function($scope, Authentication, $rootScope){
     $scope.userData = {
-      username: 'test',
-      email: 'test@mail.com',
-      password: 'test123'
+      // username: 'test',
+      // email: 'test@mail.com',
+      // password: 'test123'
     }
 
     $scope.register = function(){

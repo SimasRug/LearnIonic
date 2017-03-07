@@ -4,7 +4,7 @@
      <form name="loginForm" ng-submit="login()" novalidate>
       <div class="list">
         <label for="email" class="item item-input item-stacked-label">
-          <span class="input-label">Username or Email Address</span>
+          <span class="input-label">Email Address</span>
            <input type="email" placeholder="Username or Email Address" name="email" ng-model="userData.email" ng-required="true">
         </label>
         <p ng-show="loginForm.email.$invalid && loginForm.email.$touched" class="text-center validationText"> Must be a valid username or email</p>
